@@ -1,4 +1,4 @@
-const { $, browser } = require('@wdio/globals')
+const { $ } = require('@wdio/globals')
 
 class DashboardPage {
 
@@ -16,7 +16,6 @@ class DashboardPage {
 
     async addToCartItem() {
         await this.addToCartButton.click()
-        await browser.pause(1000)
     }
 
     async clickCartButton() {
