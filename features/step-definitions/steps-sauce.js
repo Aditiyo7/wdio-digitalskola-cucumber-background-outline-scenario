@@ -9,11 +9,15 @@ Given("user is on sauce-demo page", async () => {
     await SauceLoginPage.open()
 });
 
-When(/^user input username with "(.*)"$/, async (username) => {
+When(/^user login using username "(.*)" and password "(.*)"$/, async (username, password) => {
+    await SauceLoginPage.login(username, password)
+});
+
+When(/^user input username with (\w+)$/, async (username) => {
     await SauceLoginPage.inputUsername(username)
 })
 
-When(/^user input password with "(.*)"$/, async (password) => {
+When(/^user input password with (\w+)$/, async (password) => {
     await SauceLoginPage.inputPassword(password)
 });
 
@@ -24,10 +28,6 @@ When(/^user click login button$/, async () => {
 Then(/^user should redirect to homepage$/, async () => {
     await DashboardPage.validateOnPage()
 });
-
-// Then(/^user login using username "(.*)" and password "(.*)"$/, async (username, password) => {
-//     await SauceLoginPage.login(username, password)
-// });
 
 When("User add item to cart", async () => {
     await DashboardPage.addToCartItem()

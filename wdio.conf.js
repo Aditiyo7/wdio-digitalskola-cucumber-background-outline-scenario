@@ -1,3 +1,5 @@
+const { browser } = require('@wdio/globals')
+
 exports.config = {
     //
     // ====================
@@ -50,8 +52,12 @@ exports.config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
-    }],
+      browserName: 'chrome'
+    }
+    ,{
+        browserName: 'microsoftedge'
+    }
+    ],
 
     //
     // ===================
@@ -252,8 +258,11 @@ exports.config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+    afterStep: async function (step, scenario, result, context) {
+        if (!result.passed) {
+            await browser.saveScreenshot('./screenshot/failed-test.png')
+        }
+    },
     /**
      *
      * Runs after a Cucumber Scenario.

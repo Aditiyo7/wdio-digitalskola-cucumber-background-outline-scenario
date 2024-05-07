@@ -8,7 +8,7 @@ class CartPage {
 
     async validateOnPage() {
         await expect(this.shoppingCartList).toHaveText("1")
-        await browser.pause(3000)
+        await browser.pause(1000)
     }
 }
 
